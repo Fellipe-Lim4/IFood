@@ -10,8 +10,8 @@ public class GerenciadorCliente {
   }
   
   // Adiciona cliente
-  /*public void criarCliente (String cnpj, String nome, String email, String senha) {
-    Cliente novoCliente = new Cliente (cnpj);
+  public void criarCliente (String cnpj, String nome, String email, String senha, String sexo, String dataNasc) {
+    Cliente novoCliente = new Cliente (sexo, dataNasc);
 
     novoCliente.setNome(nome);
     novoCliente.setEmail(email);
@@ -19,14 +19,14 @@ public class GerenciadorCliente {
 
     this.clientes.add(novoCliente);
   }
-  */
+
   // Remove cliente
   public void removerCliente(Cliente novoCliente) {
     this.clientes.remove(novoCliente);
   }
 
   // Operações de login
-  /*
+ 
   public boolean realizarLogin(Cliente novoCliente) {
     if (novoCliente.getEmail().equals(this.clientes.getEmail()) && novoCliente.getSenha().equals(this.clientes.getSenha())) {
       return true;
@@ -34,5 +34,5 @@ public class GerenciadorCliente {
       return false;
     }
   }
-  */
+
 }
