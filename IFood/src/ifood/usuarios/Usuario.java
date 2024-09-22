@@ -39,15 +39,11 @@ public abstract class Usuario {
 	  public void setSenha(String senha) {
 	    this.senha = senha;
 	  }
+	@Override
+	public String toString() {
+		return "Usuario [nome=" + nome + ", email=" + email + ", senha=" + senha + ", telefone=" + telefone
+				+ ", endereco=" + endereco + ", cnpj=" + cnpj + "]";
+	}
 
-	  @Override
-	  public String toString() {
-	    return "Usuario{" +
-	        "nome='" + nome + '\'' +
-	        ", endereco='" + endereco + '\'' +
-	        ", telefone='" + telefone + '\'' +
-	        ", email='" + email + '\'' +
-	        ", cnpj='" + cnpj + '\'' +
-	        '}';
-	  }
+	  
 	}

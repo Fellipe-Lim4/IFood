@@ -34,7 +34,7 @@ public class Main {
   
 }
 */
-      gerenciadorRestaurante.criarRestaurante("12.345.678/0001-951", "João Silva", "joao.silva123@example.com","P@ssw0rd!20244");
+      gerenciadorRestaurante.criarRestaurante("12.345.678/0001-951", "Restaurante1", "joao.silva123@example.com","P@ssw0rd!20244");
       gerenciadorRestaurante.exibirRestaurantes();
     }     
 }
