@@ -6,33 +6,37 @@ public class GerenciadorCliente {
   private List<Cliente> clientes;
 
   public GerenciadorCliente() {
-    //this.clientes = List<Cliente>();
+    this.clientes = new List<Cliente>();
   }
   
   // Adiciona cliente
-  /*public void criarCliente (String cnpj, String nome, String email, String senha) {
-    Cliente novoCliente = new Cliente (cnpj);
+  public void criarCliente (String nome, String email, String senha, String telefone, 
+						String endereco, String cnpj, String sexo, String dataNascimento) {
+    Cliente novoCliente = new Cliente (nome, email, senha, telefone, endereco, cnpj, sexo, dataNascimento);
 
     novoCliente.setNome(nome);
     novoCliente.setEmail(email);
     novoCliente.setSenha(senha);
-
+	novoCliente.setTelefone(telefone);
+	novoCliente.setEndereco(endereco);
+	novoCliente.setCnpj(cnpj);
+	novoCliente.setSexo(sexo);
+	novoCliente.setDataNascimento(dataNascimento);
+		
     this.clientes.add(novoCliente);
   }
-  */
+  
   // Remove cliente
   public void removerCliente(Cliente novoCliente) {
     this.clientes.remove(novoCliente);
   }
 
-  // Operações de login
-  /*
-  public boolean realizarLogin(Cliente novoCliente) {
-    if (novoCliente.getEmail().equals(this.clientes.getEmail()) && novoCliente.getSenha().equals(this.clientes.getSenha())) {
-      return true;
-    } else {
-      return false;
-    }
+  // Imprime lista de clientes
+  public void exibirClientes() {
+    for (Cliente clientes: this.clientes) {
+      System.out.println(clientes.toString());
   }
-  */
+  
+  
+  // Operações de login a ser implementado
 }

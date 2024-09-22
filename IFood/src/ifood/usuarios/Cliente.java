@@ -9,12 +9,12 @@ public class Cliente extends Usuario {
     private String sexo;
     private String dataNascimento;
 
-    public Cliente (String sexo, String dataNascimento) {
+    public Cliente (String nome, String email, String senha, String telefone, String endereco, String cnpj, String sexo, String dataNascimento) {
       super();    // Chamada ao construtor da superclasse para outros atrib
       this.sexo = sexo;
       this.dataNascimento = dataNascimento;
     }
-
+		
     public String getSexo() {
       return sexo;
     }
