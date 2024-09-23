@@ -1,5 +1,5 @@
 package ifood.main;
-
+import ifood.menu.*;
 import ifood.gerenciadores.*;
 
 
@@ -12,7 +12,10 @@ public class Main {
 	  gerenciadorCliente.criarCliente("João", "joao@exemplo.com", "12345", "999999999", "Rua A, 123", "123.456.789-10", "M", "01/01/1992");
 	  gerenciadorCliente.exibirClientes(); 
 	  
-      gerenciadorRestaurante.criarRestaurante("12.345.678/0001-951", "Restaurante1", "joao.silva123@example.com","P@ssw0rd!20244");
-      gerenciadorRestaurante.exibirRestaurantes();
+      //gerenciadorRestaurante.criarRestaurante("12.345.678/0001-951", "Restaurante1", "joao.silva123@example.com","P@ssw0rd!20244");
+      //gerenciadorRestaurante.exibirRestaurantes();
+	  
+	  MenuPrincipal menu = new MenuPrincipal(gerenciadorRestaurante);
+	  menu.exibirMenuPrincipal();
     }     
 }

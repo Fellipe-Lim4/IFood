@@ -1,6 +1,7 @@
 package ifood.usuarios;
 
 import ifood.produtos.Produto;
+import ifood.produtos.Produto;
 import java.util.List;
 import java.util.ArrayList;
 import ifood.gerenciadores.GerenciadorRestaurante;
@@ -13,6 +14,11 @@ public class Restaurante extends Usuario {
 	  
 	  public Restaurante(String cnpj) {
 	    this.cnpj = cnpj;
+	  }
+	  
+	  public Produto criaProduto(String nome, String descricao, double preco) {
+		  Produto produto = new Produto(nome,descricao,preco);
+		  return produto;
 	  }
 	
 	  public void adicionaProduto(Produto produto) {
