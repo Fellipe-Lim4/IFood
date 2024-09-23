@@ -37,5 +37,5 @@ public class GerenciadorCliente {
   // Operações de login a ser implementado
 }
 
-}
+
 
