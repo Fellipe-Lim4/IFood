@@ -11,26 +11,21 @@ public class GerenciadorCliente {
   }
   
   // Adiciona cliente
+
+
   public void criarCliente (String nome, String email, String senha, String telefone, 
 						String endereco, String cnpj, String sexo, String dataNascimento) {
     Cliente novoCliente = new Cliente (nome, email, senha, telefone, endereco, cnpj, sexo, dataNascimento);
-
-    novoCliente.setNome(nome);
-    novoCliente.setEmail(email);
-    novoCliente.setSenha(senha);
-	novoCliente.setTelefone(telefone);
-	novoCliente.setEndereco(endereco);
-	novoCliente.setCnpj(cnpj);
-	novoCliente.setSexo(sexo);
-	novoCliente.setDataNascimento(dataNascimento);
 		
     this.clientes.add(novoCliente);
   }
+
   
   // Remove cliente
   public void removerCliente(Cliente novoCliente) {
     this.clientes.remove(novoCliente);
   }
+
 
   // Imprime lista de clientes
   public void exibirClientes() {
@@ -41,3 +36,6 @@ public class GerenciadorCliente {
   
   // Operações de login a ser implementado
 }
+
+}
+
