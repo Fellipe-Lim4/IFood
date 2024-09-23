@@ -9,10 +9,6 @@ public class Main {
       GerenciadorCliente gerenciadorCliente = new GerenciadorCliente();
       GerenciadorRestaurante gerenciadorRestaurante = new GerenciadorRestaurante();
     
-    // Comentei os trechos abaixo porque estas operações já estão sendo realizadas pelos gerenciadores
-    
-//    Restaurante restaurante = new Restaurante("Restaurante A", "Rua A, 123", "123456789", "joao@email", "123456789");
-//    System.out.println(restaurante.toString());
 	  gerenciadorCliente.criarCliente("João", "joao@exemplo.com", "12345", "999999999", "Rua A, 123", "123.456.789-10", "M", "01/01/1992");
 	  gerenciadorCliente.exibirClientes(); 
 	  

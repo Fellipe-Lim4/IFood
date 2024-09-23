@@ -31,13 +31,24 @@ public class Cliente extends Usuario {
       this.dataNascimento = dataNascimento;
     }
 
-    public void realizaPedido() {      
+    public Pedido realizaPedido() {      
       List<Item> listaItens = new ArrayList<Item>();
       listaItens.add(new Item("Pizza", "Pizza de calabresa", 50.0)); 
       listaItens.add(new Item("Sanduiche", "Sanduiche de carne", 15.0));// O cliente escolhe os item do pedido
       
       System.out.println("Realizando pedido...");
       Pedido pedido = new Pedido(listaItens);
+      
+      return pedido;
     }
+
+	@Override
+	public String toString() {
+		return "Cliente [nome=" + getNome() + ", endereco=" + getEndereco() + ", telefone="
+				+ getTelefone() + ", email=" + getEmail() + ", senha=" + getSenha() + ", cnpj="
+				+ getCnpj() + ", sexo=" + sexo + ", dataNascimento=" + dataNascimento + "]";
+	}
+
+	
 
 }

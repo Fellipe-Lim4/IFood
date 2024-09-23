@@ -1,12 +1,13 @@
 package ifood.gerenciadores;    // Mudar o nome do diretó/rio para ifood.gerenciadores.
 import ifood.usuarios.Cliente;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GerenciadorCliente {
   private List<Cliente> clientes;
 
   public GerenciadorCliente() {
-    this.clientes = new List<Cliente>();
+    this.clientes = new ArrayList<>();
   }
   
   // Adiciona cliente
@@ -35,8 +36,8 @@ public class GerenciadorCliente {
   public void exibirClientes() {
     for (Cliente clientes: this.clientes) {
       System.out.println(clientes.toString());
+    }
   }
-  
   
   // Operações de login a ser implementado
 }
