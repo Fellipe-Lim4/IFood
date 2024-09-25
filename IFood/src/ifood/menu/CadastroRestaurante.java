@@ -2,11 +2,17 @@ package ifood.menu;
 import java.util.Scanner;
 import ifood.gerenciadores.GerenciadorRestaurante;
 
-public class CadastroRestaurante extends LoginRestaurante {
+public class CadastroRestaurante extends MenuPrincipal{
+	GerenciadorRestaurante gerenciador;
 	
+	public CadastroRestaurante(GerenciadorRestaurante gerenciador) {
+		super(gerenciador);
+		// TODO Auto-generated constructor stub
+	}
+
 	Scanner sc = new Scanner(System.in);
 	
-	public void exibirCadastroRestaurante(GerenciadorRestaurante gerenciador) {
+	public void exibirCadastroRestaurante() {
 		System.out.println("CADASTRO RESTAURANTE");
 		System.out.print("CNPJ: ");
 		String cnpj = sc.nextLine();
@@ -16,8 +22,9 @@ public class CadastroRestaurante extends LoginRestaurante {
 		String email = sc.nextLine();
 		System.out.print("Senha: ");
 		String senha = sc.nextLine();
-		gerenciador.criarRestaurante(cnpj, nome, email, senha);
+		this.gerenciador.criarRestaurante(cnpj, nome, email, senha);
 		System.out.println("\nRealize o Login\n");
-		this.loginRestaurante(gerenciador);
+		LoginRestaurante login = new LoginRestaurante(gerenciador);
+		login.loginRestaurante();
 	}
 }

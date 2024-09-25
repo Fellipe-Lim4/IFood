@@ -2,7 +2,7 @@ package ifood.menu;
 import ifood.gerenciadores.*;
 import java.util.Scanner;
 
-public class MenuPrincipal extends CadastroRestaurante{
+public class MenuPrincipal {
 	
 	GerenciadorRestaurante gerenciadorRest;
 	
@@ -18,7 +18,8 @@ public class MenuPrincipal extends CadastroRestaurante{
 		int opcao = sc.nextInt();
 		switch(opcao) {
 		case 1:
-			this.exibirCadastroRestaurante(this.gerenciadorRest);
+			CadastroRestaurante cadastro = new CadastroRestaurante(this.gerenciadorRest);
+			cadastro.exibirCadastroRestaurante();
 			break;
 		default:
 			System.out.println("Opção inválida.");
