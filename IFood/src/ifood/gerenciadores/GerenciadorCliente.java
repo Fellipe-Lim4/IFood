@@ -14,9 +14,9 @@ public class GerenciadorCliente {
 
 
   public void criarCliente (String nome, String email, String senha, String telefone, 
-						String endereco, String cnpj, String sexo, String dataNascimento) {
-    Cliente novoCliente = new Cliente (nome, email, senha, telefone, endereco, cnpj, sexo, dataNascimento);
-		
+						String endereco, String sexo, String dataNascimento) {
+    Cliente novoCliente = new Cliente (nome, email, senha, telefone, endereco, sexo, dataNascimento);
+	
     this.clientes.add(novoCliente);
   }
 
@@ -33,8 +33,14 @@ public class GerenciadorCliente {
       System.out.println(clientes.toString());
     }
   }
+
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
   
   // Operações de login a ser implementado
+  
 }
 
 

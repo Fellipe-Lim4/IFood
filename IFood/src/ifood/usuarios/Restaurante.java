@@ -42,7 +42,7 @@ public class Restaurante extends Usuario {
 	    	++cont;
 	    	System.out.print(cont + "." + produto.toString() + " // ");
 	    }
-	    System.out.print("}");
+	    System.out.print("}\n");
 	  }
 	  
 	  public String getCnpj() {
