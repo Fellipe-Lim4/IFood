@@ -6,10 +6,14 @@ import java.util.List;
 public class GerenciadorRestaurante {
 	
   private Restaurante restauranteLogado;
-  private List<Restaurante> restaurantes = new ArrayList<>();
+  private List<Restaurante> restaurantes;
+  
+  public GerenciadorRestaurante() {
+	  this.restaurantes = new ArrayList<>();
+  }
 
   public void criarRestaurante(String cnpj, String nome, String email, String senha) {
-    Restaurante restaurante = new Restaurante(cnpj);
+    Restaurante restaurante = new Restaurante(cnpj, this);
     restaurante.setNome(nome);
     restaurante.setEmail(email);
     restaurante.setSenha(senha);

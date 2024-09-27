@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import ifood.gerenciadores.GerenciadorRestaurante;
 
 public class Restaurante extends Usuario {
-
 	  private String cnpj;
 	  private List<Produto> produtos = new ArrayList<>();
 	  private int idRestaurante;
 	  
-	  public Restaurante(String cnpj) {
+	  public Restaurante(String cnpj, GerenciadorRestaurante gerenciador) {
 	    this.cnpj = cnpj;
+	    this.setIdRestaurante(gerenciador);
 	  }
 	  
 	  public Produto criaProduto(String nome, String descricao, double preco) {
@@ -32,9 +32,17 @@ public class Restaurante extends Usuario {
 	  }
 	
 	  public void exibeProdutos() {
+		if(this.produtos.size()==0) {
+			System.out.println("O cardápio está vazio!");
+			return;
+		}
+		System.out.print("\n{");
+		int cont = 0;
 	    for(Produto produto : this.produtos) {
-	      System.out.println(produto.toString());
+	    	++cont;
+	    	System.out.print(cont + "." + produto.toString() + " // ");
 	    }
+	    System.out.print("}\n");
 	  }
 	  
 	  public String getCnpj() {
@@ -50,7 +58,8 @@ public class Restaurante extends Usuario {
 	}
 	
 	public void setIdRestaurante(GerenciadorRestaurante gerenciador) {
-		this.idRestaurante = gerenciador.getRestaurantes().size();
+		int tamanho = gerenciador.getRestaurantes().size();
+		this.idRestaurante = tamanho;
 	}
 	
 	@Override

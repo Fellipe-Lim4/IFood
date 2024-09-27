@@ -7,9 +7,9 @@ public class Item {
   
 
   public Item(String nome, String descricao, double preco) {
-    nome = this.nome;
-    descricao = this.descricao;
-    preco = this.preco;
+    this.nome = nome;
+    this.descricao = descricao;
+    this.preco = preco;
   }
   
 public String getNome() {
@@ -36,9 +36,10 @@ public String getNome() {
     this.preco = preco;
   }
 
-  public String toString() {
-    return " Nome: '" + nome + '\n' +
-        " Descrição: '" + descricao + "\n" +
-        " Preço: " + preco;
-  }
+@Override
+public String toString() {
+	return "Nome: " + nome + ", Descrição: " + descricao + ", Preço: " + preco;
+}
+
+
 }
