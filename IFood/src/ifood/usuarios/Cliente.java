@@ -2,8 +2,11 @@ package ifood.usuarios;
 
 import java.util.List;
 import java.util.ArrayList;
-import ifood.produtos.Item;
+
+import ifood.gerenciadores.GerenciadorCliente;
+import ifood.produtos.ItensPedido;
 import ifood.produtos.Pedido;
+import ifood.produtos.Produto;
 
 public class Cliente extends Usuario {
 	private String nome;
@@ -13,8 +16,10 @@ public class Cliente extends Usuario {
 	private String endereco;
     private String sexo;
     private String dataNascimento;
+    private List<Pedido> HistoricoPedidos = new ArrayList<>();
+    private int Id;
 
-    public Cliente (String nome, String email, String senha, String telefone, String endereco, String sexo, String dataNascimento) {
+    public Cliente (String nome, String email, String senha, String telefone, String endereco, String sexo, String dataNascimento, GerenciadorCliente gerenciador) {
       this.nome = nome;
       this.email = email;
       this.senha = senha;
@@ -22,11 +27,21 @@ public class Cliente extends Usuario {
       this.endereco = endereco;
       this.sexo = sexo;
       this.dataNascimento = dataNascimento;
+      setId(gerenciador);
     }
     
-    
+    public int getId() {
+    	return Id;
+    }
 		
-    public String getNome() {
+    private void setId(GerenciadorCliente gerenciador) {
+		int tamanho = gerenciador.getClientes().size();
+		this.Id = tamanho;
+	}
+
+
+
+	public String getNome() {
 		return nome;
 	}
 
@@ -82,14 +97,9 @@ public class Cliente extends Usuario {
       this.dataNascimento = dataNascimento;
     }
 
-    public Pedido realizaPedido() {      
-      List<Item> listaItens = new ArrayList<Item>();
-      listaItens.add(new Item("Pizza", "Pizza de calabresa", 50.0)); 
-      listaItens.add(new Item("Sanduiche", "Sanduiche de carne", 15.0));// O cliente escolhe os item do pedido
-      
-      System.out.println("Realizando pedido...");
-      Pedido pedido = new Pedido(listaItens);
-      
+    public Pedido realizaPedido(double valor) {      
+      List<ItensPedido> listaItens = new ArrayList<ItensPedido>();
+      Pedido pedido = new Pedido(listaItens, valor, getId());
       return pedido;
     }
 
@@ -98,6 +108,18 @@ public class Cliente extends Usuario {
 		return "Cliente [nome=" + getNome() + ", endereco=" + getEndereco() + ", telefone="
 				+ getTelefone() + ", email=" + getEmail() + ", senha=" + getSenha() + ", cnpj="
 				+ getCnpj() + ", sexo=" + sexo + ", dataNascimento=" + dataNascimento + "]";
+	}
+
+
+
+	public List<Pedido> getHistoricoPedidos() {
+		return HistoricoPedidos;
+	}
+
+
+
+	public void setHistoricoPedidos(List<Pedido> historicoPedidos) {
+		HistoricoPedidos = historicoPedidos;
 	}
 
 	

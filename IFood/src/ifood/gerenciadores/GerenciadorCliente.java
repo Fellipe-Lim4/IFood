@@ -14,8 +14,8 @@ public class GerenciadorCliente {
 
 
   public void criarCliente (String nome, String email, String senha, String telefone, 
-						String endereco, String sexo, String dataNascimento) {
-    Cliente novoCliente = new Cliente (nome, email, senha, telefone, endereco, sexo, dataNascimento);
+						String endereco, String sexo, String dataNascimento, GerenciadorCliente gerenciadorCliente) {
+    Cliente novoCliente = new Cliente (nome, email, senha, telefone, endereco, sexo, dataNascimento, this);
 	
     this.clientes.add(novoCliente);
   }
