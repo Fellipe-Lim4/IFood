@@ -58,8 +58,8 @@ public abstract class Usuario {
 	
 	@Override
 	public String toString() {
-		return "Usuario [nome=" + nome + ", email=" + email + ", senha=" + senha + ", telefone=" + telefone
-				+ ", endereco=" + endereco + ", cnpj=" + cnpj + "]";
+		return "nome:" + nome + ", E-mail: " + email + ", senha: " + senha + ", telefone: " + telefone
+				+ ", endereco: " + endereco;
 	}
 
 	  

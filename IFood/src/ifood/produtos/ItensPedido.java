@@ -1,17 +1,33 @@
 package ifood.produtos;
 
-public class Item {
+public class ItensPedido {
   private String nome;
   private String descricao;
   private double preco;
+  private int qtd;
   
 
-  public Item(String nome, String descricao, double preco) {
+
+public ItensPedido(String nome, String descricao, double preco) {
     this.nome = nome;
     this.descricao = descricao;
     this.preco = preco;
   }
+
+public ItensPedido(Produto produto) {
+	this.nome = produto.getNome();
+	this.descricao = produto.getDescricao();
+	this.preco = produto.getPreco();
+}
   
+public int getQtd() {
+	return qtd;
+}
+
+public void setQtd(int qtd) {
+	this.qtd = qtd;
+}
+
 public String getNome() {
     return nome;
   }

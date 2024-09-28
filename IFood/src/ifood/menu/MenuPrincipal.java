@@ -72,7 +72,7 @@ public class MenuPrincipal implements Entrada {
 				String sexo = sc.nextLine();
 				System.out.print("Digite sua data de nascimento: ");
 				String dataNasc = sc.nextLine();
-				this.gerenciadorCli.criarCliente(nome,email,senha,telefone,endereco,sexo,dataNasc);
+				this.gerenciadorCli.criarCliente(nome,email,senha,telefone,endereco,sexo,dataNasc, this.gerenciadorCli);
 				System.out.println("Cliente cadastrado!");
 				break;
 			case 2:
@@ -84,7 +84,13 @@ public class MenuPrincipal implements Entrada {
 				String emailRest = sc.nextLine();
 				System.out.print("Crie uma senha: ");
 				String senhaRest = sc.nextLine();
-				this.gerenciadorRest.criarRestaurante(cnpj, nomeRest, emailRest, senhaRest);
+				System.out.print("Qual será a taxa de entrega do seu Restaurante? (Máximo:R$10,00) Valor: ");
+				double taxaEntrega = ScDouble();
+				while(taxaEntrega<=0 || taxaEntrega>10) {
+					System.out.print("Digite uma taxa de entrega válida(Máx. R$10,00): ");
+					taxaEntrega = ScDouble();
+				}
+				this.gerenciadorRest.criarRestaurante(cnpj, nomeRest, emailRest, senhaRest, taxaEntrega, this.gerenciadorRest);
 				break;
 			case 3:
 				return;
@@ -101,6 +107,8 @@ public class MenuPrincipal implements Entrada {
 		for(Cliente cliente : listaClientes) {
 			if(cliente.getEmail().equals(email) && cliente.getSenha().equals(senha)) {
 				System.out.println("Bem vindo, " + cliente.getNome() + "!");
+				criarMenuCliente(cliente);
+				return;
 			}	
 		}
 		List<Restaurante> listaRestaurantes = this.gerenciadorRest.getRestaurantes();
@@ -116,6 +124,11 @@ public class MenuPrincipal implements Entrada {
 	private void criarMenuRestaurante(Restaurante restauranteLog) {
 		MenuRestaurante menuRes = new MenuRestaurante(gerenciadorRest,gerenciadorCli,restauranteLog);
 		menuRes.exibirMenuRestaurante();
+	}
+	
+	private void criarMenuCliente(Cliente clienteLog) {
+		MenuCliente menuCliente = new MenuCliente(gerenciadorRest,gerenciadorCli,clienteLog);
+		menuCliente.exibirMenuCliente();
 	}
 
 	@Override

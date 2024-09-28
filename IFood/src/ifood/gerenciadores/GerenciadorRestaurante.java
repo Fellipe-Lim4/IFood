@@ -12,11 +12,12 @@ public class GerenciadorRestaurante {
 	  this.restaurantes = new ArrayList<>();
   }
 
-  public void criarRestaurante(String cnpj, String nome, String email, String senha) {
+  public void criarRestaurante(String cnpj, String nome, String email, String senha, double taxaEntrega, GerenciadorRestaurante gerenciadorRestaurante) {
     Restaurante restaurante = new Restaurante(cnpj, this);
     restaurante.setNome(nome);
     restaurante.setEmail(email);
     restaurante.setSenha(senha);
+    restaurante.setTaxaEntrega(taxaEntrega);
     this.restaurantes.add(restaurante);
   }
   

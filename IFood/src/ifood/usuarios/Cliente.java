@@ -2,8 +2,10 @@ package ifood.usuarios;
 
 import java.util.List;
 import java.util.ArrayList;
-import ifood.produtos.*;
 
+import ifood.gerenciadores.GerenciadorCliente;
+import ifood.produtos.ItensPedido;
+import ifood.produtos.*;
 
 public class Cliente extends Usuario {
 	private String nome;
@@ -13,9 +15,12 @@ public class Cliente extends Usuario {
 	private String endereco;
     private String sexo;
     private String dataNascimento;
-    private Cupom cupomDesconto;
+    private List<Pedido> HistoricoPedidos = new ArrayList<>();
+    private int Id;
 
-    public Cliente (String nome, String email, String senha, String telefone, String endereco, String sexo, String dataNascimento) {
+    private Cupom cupomDesconto
+
+    public Cliente (String nome, String email, String senha, String telefone, String endereco, String sexo, String dataNascimento, GerenciadorCliente gerenciador) {
       this.nome = nome;
       this.email = email;
       this.senha = senha;
@@ -23,11 +28,21 @@ public class Cliente extends Usuario {
       this.endereco = endereco;
       this.sexo = sexo;
       this.dataNascimento = dataNascimento;
+      setId(gerenciador);
     }
     
-    
+    public int getId() {
+    	return Id;
+    }
 		
-    public String getNome() {
+    private void setId(GerenciadorCliente gerenciador) {
+		int tamanho = gerenciador.getClientes().size();
+		this.Id = tamanho;
+	}
+
+
+
+	public String getNome() {
 		return nome;
 	}
 
@@ -83,6 +98,11 @@ public class Cliente extends Usuario {
       this.dataNascimento = dataNascimento;
     }
 
+
+    public Pedido realizaPedido(double valor) {      
+      List<ItensPedido> listaItens = new ArrayList<ItensPedido>();
+      Pedido pedido = new Pedido(listaItens, valor, getId());
+
     public Pedido realizaPedido() {      
       List<Produto> listaItens = new ArrayList<Produto>();
       listaItens.add(new Produto("Pizza", "Pizza de calabresa", 50.0)); 
@@ -93,6 +113,7 @@ public class Cliente extends Usuario {
       System.out.println("Realizando pedido...");
       Pedido pedido = new Pedido(listaItens, cupomDesconto);		// Pedido recebe a lista de produtos e o cupom
       
+
       return pedido;
     }
 
@@ -101,6 +122,18 @@ public class Cliente extends Usuario {
 		return "Cliente [nome=" + getNome() + ", endereco=" + getEndereco() + ", telefone="
 				+ getTelefone() + ", email=" + getEmail() + ", senha=" + getSenha() + ", cnpj="
 				+ getCnpj() + ", sexo=" + sexo + ", dataNascimento=" + dataNascimento + "]";
+	}
+
+
+
+	public List<Pedido> getHistoricoPedidos() {
+		return HistoricoPedidos;
+	}
+
+
+
+	public void setHistoricoPedidos(List<Pedido> historicoPedidos) {
+		HistoricoPedidos = historicoPedidos;
 	}
 
 	

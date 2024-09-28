@@ -1,15 +1,18 @@
 package ifood.usuarios;
 
 import ifood.produtos.Produto;
-import ifood.produtos.Produto;
 import java.util.List;
 import java.util.ArrayList;
 import ifood.gerenciadores.GerenciadorRestaurante;
+import java.util.Random;
 
 public class Restaurante extends Usuario {
+	  Random rand = new Random();
 	  private String cnpj;
 	  private List<Produto> produtos = new ArrayList<>();
 	  private int idRestaurante;
+	  private int tempoEntrega = rand.nextInt(60);
+	  private double taxaEntrega;
 	  
 	  public Restaurante(String cnpj, GerenciadorRestaurante gerenciador) {
 	    this.cnpj = cnpj;
@@ -17,8 +20,12 @@ public class Restaurante extends Usuario {
 	  }
 	  
 	  public Produto criaProduto(String nome, String descricao, double preco) {
-		  Produto produto = new Produto(nome,descricao,preco);
+		  Produto produto = new Produto(nome,descricao,preco, this);
 		  return produto;
+	  }
+	  
+	  public int getTempoEntrega() {
+		  return tempoEntrega;
 	  }
 	
 	  public void adicionaProduto(Produto produto) {
@@ -62,10 +69,24 @@ public class Restaurante extends Usuario {
 		this.idRestaurante = tamanho;
 	}
 	
+	
+	
+	public double getTaxaEntrega() {
+		return taxaEntrega;
+	}
+
+	public void setTaxaEntrega(double taxaEntrega) {
+		this.taxaEntrega = taxaEntrega;
+	}
+
 	@Override
 	public String toString() {
-		return "Restaurante [cnpj=" + cnpj + ", produtos=" + produtos + ", idRestaurante=" + idRestaurante + "]";
+		return super.toString()+" cnpj: " + cnpj + ", produtos: " + produtos + ", idRestaurante: "
+				+ idRestaurante + ", Tempo de Entrega: " + tempoEntrega + ", Taxa de Entrega: " + taxaEntrega + "]";
 	}
+
+	
+	
 	  
   
 }
