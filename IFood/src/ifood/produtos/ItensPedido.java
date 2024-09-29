@@ -8,27 +8,27 @@ public class ItensPedido {
   
 
 
-public ItensPedido(String nome, String descricao, double preco) {
-    this.nome = nome;
-    this.descricao = descricao;
-    this.preco = preco;
+  public ItensPedido(String nome, String descricao, double preco) {
+	  this.nome = nome;
+	  this.descricao = descricao;
+	  this.preco = preco;
   }
 
-public ItensPedido(Produto produto) {
-	this.nome = produto.getNome();
-	this.descricao = produto.getDescricao();
-	this.preco = produto.getPreco();
-}
-  
-public int getQtd() {
-	return qtd;
-}
+  public ItensPedido(Produto produto) {
+	  this.nome = produto.getNome();
+	  this.descricao = produto.getDescricao();
+	  this.preco = produto.getPreco();
+  }
 
-public void setQtd(int qtd) {
-	this.qtd = qtd;
-}
+  public int getQtd() {
+	  return qtd;
+  }
 
-public String getNome() {
+  public void setQtd(int qtd) {
+	  this.qtd = qtd;
+  }
+
+  public String getNome() {
     return nome;
   }
 
@@ -52,10 +52,10 @@ public String getNome() {
     this.preco = preco;
   }
 
-@Override
-public String toString() {
-	return "Nome: " + nome + ", Descrição: " + descricao + ", Preço: " + preco;
-}
+  @Override
+  public String toString() {
+	  return "Nome: " + nome + ", Descrição: " + descricao + ", Preço: " + preco;
+  }
 
 
 }
