@@ -1,6 +1,5 @@
 package ifood.produtos;
 
-
 import ifood.usuarios.Restaurante;
 
 public class Produto extends ItensPedido {

@@ -30,24 +30,29 @@ public class MenuRestaurante extends MenuPrincipal {
 
 			opc = super.ScInt();
 			switch(opc) {
-			case 1:
-				adicionaProduto();
-				break;
-			case 2:
-				removeProduto();
-				break;
-			case 3:
-				alteraProduto();
-				break;
-			case 4:
-				exibeProdutos();
-				break;
-			case 5:
-				System.out.println(restauranteLogado.toString());
-				break;	
-			case 6:
-				System.out.println("Log off.");
-				return;
+				case 1:
+					adicionaProduto();
+					break;
+					
+				case 2:
+					removeProduto();
+					break;
+					
+				case 3:
+					alteraProduto();
+					break;
+					
+				case 4:
+					exibeProdutos();
+					break;
+					
+				case 5:
+					System.out.println(restauranteLogado.toString());
+					break;	
+					
+				case 6:
+					System.out.println("Log off.");
+					return;
 			}
 		}
 	}
@@ -61,10 +66,12 @@ public class MenuRestaurante extends MenuPrincipal {
 		String descricao = sc.nextLine();
 		System.out.print("Preço do Produto: ");
 		double preco = super.ScDouble();
+		
 		while(preco<=0) {
 			System.out.print("Digite um preço válido: ");
 			preco = super.ScDouble();
 		}
+		
 		Produto produtoAdd = restauranteLogado.criaProduto(nome, descricao, preco);
 		restauranteLogado.adicionaProduto(produtoAdd);
 		System.out.println("Produto adicionado ao Cardápio.");
@@ -76,6 +83,7 @@ public class MenuRestaurante extends MenuPrincipal {
 		System.out.print("\nDigite o número do produto que você deseja remover:");
 		int numProd = super.ScInt();
 		boolean valido = false;
+		
 		while(!valido) {
 			try {
 				Produto produtoRemover = restauranteLogado.getProdutos().get(numProd-1);
@@ -103,10 +111,12 @@ public class MenuRestaurante extends MenuPrincipal {
 		}
 		System.out.println("\nAlterar produto");
 		restauranteLogado.exibeProdutos();
+		
 		System.out.print("\nDigite o número do produto que você deseja alterar:");
 		int numProd = super.ScInt();
 		boolean valido = false;
 		Produto produtoAlterar = new Produto(null,null,0, restauranteLogado);
+		
 		while(!valido) {
 			try {
 
@@ -117,45 +127,52 @@ public class MenuRestaurante extends MenuPrincipal {
 			} catch(IndexOutOfBoundsException i) {
 				System.out.println("Índice de produto inválido, Tente novamente.");
 				numProd = super.ScInt();
-				}
+			}
+			
 		int opc = 0;
+		
 		while(opc!=4) {
 			System.out.println(produtoAlterar.toString());
 			System.out.println("1. Alterar nome do produto.");
 			System.out.println("2. Alterar descrição do produto.");
 			System.out.println("3. Alterar preço do produto.");
 			System.out.println("4. Sair");
+			
 			opc = super.ScInt();
+			
 			switch(opc) {
-			case 1:				
-				System.out.println("Nome atual: " + produtoAlterar.getNome());
-				System.out.print("\nDigite o novo nome: ");
-				String novoNome = sc.nextLine();
-				produtoAlterar.setNome(novoNome);
-				System.out.println("Novo nome: " + produtoAlterar.getNome());
-				break;
-			case 2:
-				System.out.println("Descrição atual: " + produtoAlterar.getDescricao());
-				System.out.print("\nDigite a nova descrição: ");
-				String novaDescricao = sc.nextLine();
-				produtoAlterar.setDescricao(novaDescricao);
-				System.out.println("Nova descrição: " + produtoAlterar.getDescricao());
-				break;
-			case 3:
-				System.out.println("Preço atual: " + produtoAlterar.getPreco());
-				System.out.print("\nDigite o novo preço: ");
-				double novoPreco = super.ScDouble();
-				while(novoPreco<=0) {
-					System.out.print("Digite um preço válido: ");
-					novoPreco = super.ScDouble();
-				}
-				produtoAlterar.setPreco(novoPreco);
-				System.out.println("Novo preço: " + produtoAlterar.getPreco());
-				break;
-			case 4:
-				restauranteLogado.getProdutos().remove(numProd-1);
-				restauranteLogado.getProdutos().add(numProd-1, produtoAlterar);
-				return;	
+				case 1:				
+					System.out.println("Nome atual: " + produtoAlterar.getNome());
+					System.out.print("\nDigite o novo nome: ");
+					String novoNome = sc.nextLine();
+					produtoAlterar.setNome(novoNome);
+					System.out.println("Novo nome: " + produtoAlterar.getNome());
+					break;
+					
+				case 2:
+					System.out.println("Descrição atual: " + produtoAlterar.getDescricao());
+					System.out.print("\nDigite a nova descrição: ");
+					String novaDescricao = sc.nextLine();
+					produtoAlterar.setDescricao(novaDescricao);
+					System.out.println("Nova descrição: " + produtoAlterar.getDescricao());
+					break;
+					
+				case 3:
+					System.out.println("Preço atual: " + produtoAlterar.getPreco());
+					System.out.print("\nDigite o novo preço: ");
+					double novoPreco = super.ScDouble();
+					while(novoPreco<=0) {
+						System.out.print("Digite um preço válido: ");
+						novoPreco = super.ScDouble();
+					}
+					produtoAlterar.setPreco(novoPreco);
+					System.out.println("Novo preço: " + produtoAlterar.getPreco());
+					break;
+					
+				case 4:
+					restauranteLogado.getProdutos().remove(numProd-1);
+					restauranteLogado.getProdutos().add(numProd-1, produtoAlterar);
+					return;	
 			}
 		}
 		

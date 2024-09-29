@@ -13,12 +13,15 @@ public class Cupom {
 	public double getValor() {
 		return valor;
 	}
+	
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
+	
 	public double getPorcentagem() {
 		return porcentagem;
 	}
+	
 	public void setPorcentagem(double porcentagem) {
 		this.porcentagem = porcentagem;
 	}	
