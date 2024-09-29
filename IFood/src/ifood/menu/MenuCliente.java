@@ -116,7 +116,7 @@ public class MenuCliente extends MenuPrincipal {
 		
 		}
 
-
+	// Simulação de entrega
 	private void simulandoEntrega(int tempoEntrega) {
 		try {
 			int tempoPreparo = tempoEntrega/5;
@@ -131,6 +131,6 @@ public class MenuCliente extends MenuPrincipal {
 		}
 	}
 		
-	}
+}
 
 
