@@ -151,7 +151,7 @@ public class MenuPrincipal implements Entrada {
 		while(!valido) {
 			try {
 				entrada = sc.nextDouble();
-				while(entrada<=0) {
+				while(entrada<0) {
 					System.out.print("\nValor inválido. Tente novamente: ");
 					entrada = sc.nextDouble();
 				}

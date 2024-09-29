@@ -65,8 +65,7 @@ public class MenuRestaurante extends MenuPrincipal {
 			System.out.print("Digite um preço válido: ");
 			preco = super.ScDouble();
 		}
-		Produto produtoAdd = restauranteLogado.criaProduto(nome, descricao, preco);
-		restauranteLogado.adicionaProduto(produtoAdd);
+		Produto produtoA = restauranteLogado.criaProduto(nome, descricao, preco);
 		System.out.println("Produto adicionado ao Cardápio.");
 	}
 	

@@ -16,7 +16,7 @@ public class Cliente extends Usuario {
 	private String endereco;
     private String sexo;
     private String dataNascimento;
-    private List<Pedido> HistoricoPedidos = new ArrayList<>();
+    private List<Pedido> historicoPedidos;
     private int Id;
 
     public Cliente (String nome, String email, String senha, String telefone, String endereco, String sexo, String dataNascimento, GerenciadorCliente gerenciador) {
@@ -27,6 +27,7 @@ public class Cliente extends Usuario {
       this.endereco = endereco;
       this.sexo = sexo;
       this.dataNascimento = dataNascimento;
+      this.historicoPedidos = new ArrayList<>();
       setId(gerenciador);
     }
     
@@ -113,13 +114,24 @@ public class Cliente extends Usuario {
 
 
 	public List<Pedido> getHistoricoPedidos() {
-		return HistoricoPedidos;
+		return historicoPedidos;
+	}
+	
+	
+	public void exibirHistoricoPedidos() {
+		if(this.historicoPedidos.isEmpty()) { 
+			System.out.println("Você ainda não fez pedidos!");
+			return;
+		}
+		int contador = 0;
+		for(Pedido pedido: this.historicoPedidos) {
+			contador++;
+			System.out.print(contador + ". " + pedido.toString());
+		}
 	}
 
-
-
 	public void setHistoricoPedidos(List<Pedido> historicoPedidos) {
-		HistoricoPedidos = historicoPedidos;
+		this.historicoPedidos = historicoPedidos;
 	}
 
 	

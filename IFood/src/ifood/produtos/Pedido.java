@@ -2,6 +2,7 @@ package ifood.produtos;
 import java.time.LocalDate;
 import java.util.List;
 
+import ifood.gerenciadores.GerenciadorCliente;
 import ifood.usuarios.Cliente;
 
 public class Pedido {
@@ -9,6 +10,7 @@ public class Pedido {
   private LocalDate data = LocalDate.now();
   private double valor;
   private int idCliente;
+  private int idPedido;
 
   public Pedido(List<ItensPedido> itens, double valor, int idCliente) {
     this.setItens(itens);
@@ -16,6 +18,16 @@ public class Pedido {
     this.setIdCliente(idCliente);
   }
 
+  
+  public int getId() {
+  	return idPedido;
+  }
+		
+  public void setIdPedido(Cliente cliente) {
+		int tamanho = cliente.getHistoricoPedidos().size();
+		this.idPedido = tamanho;
+	}
+  
 public int getIdCliente() {
 	return idCliente;
 }
@@ -49,6 +61,6 @@ public void setData(LocalDate data) {
 }
 
   public String toString() {
-	  return "itens: " + itens + ", valor: " + valor + ", idCliente: " + idCliente + ", data : " + data;
+	  return "{Pedido itens: " + itens + ", valor: " + valor + ", idCliente: " + idCliente + ", data : " + data + "}";
   }
 }
