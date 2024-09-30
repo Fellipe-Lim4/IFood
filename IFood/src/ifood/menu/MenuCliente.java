@@ -1,5 +1,6 @@
 package ifood.menu;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -186,6 +187,9 @@ public class MenuCliente extends MenuPrincipal {
 									}
 								}
 							}
+							if(cupomAtivado.getDataExpiracao().isBefore(LocalDate.now())) {
+								System.out.println("Falha ao aplicar o cupom: Cupom vencido.");
+							} else {
 							if(cupomAtivado.getValor()<valor && cupomAtivado.getValor()!=0) {
 								valor = valor-cupomAtivado.getValor();
 							} else {
@@ -195,7 +199,7 @@ public class MenuCliente extends MenuPrincipal {
 								System.out.println("Desconto não aplicado: desconto maior que o valor do pedido");
 							}
 							}
-							
+							}
 							if(!cupomAtivado.isFreteGratis())valor+=restaurante.getTaxaEntrega();
 							Pedido pedido = new Pedido(itens, valor, clienteLogado.getId());
 							clienteLogado.getHistoricoPedidos().add(pedido);
@@ -279,6 +283,8 @@ public class MenuCliente extends MenuPrincipal {
 									}
 								}
 							}
+							if(cupomAtivado.getDataExpiracao().isBefore(LocalDate.now())) {
+								System.out.println("Falha ao aplicar o cupom: Cupom vencido.");
 							if(cupomAtivado.getValor()<valor) {
 								valor = valor-cupomAtivado.getValor();
 							} else {
@@ -287,6 +293,7 @@ public class MenuCliente extends MenuPrincipal {
 								valor = valor-resultado;
 							} else {
 								System.out.println("Desconto não aplicado: desconto maior que o valor do pedido");
+							}
 							}
 							}
 							if(!cupomAtivado.isFreteGratis())valor+=restaurante.getTaxaEntrega();
