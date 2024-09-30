@@ -2,20 +2,87 @@ package ifood.usuarios;
 
 import java.util.List;
 import java.util.ArrayList;
-import ifood.produtos.Item;
+
+import ifood.gerenciadores.GerenciadorCliente;
+import ifood.produtos.ItensPedido;
 import ifood.produtos.Pedido;
+import ifood.produtos.Produto;
 
 public class Cliente extends Usuario {
+	private String nome;
+	private String email;
+	private String senha;
+	private String telefone;
+	private String endereco;
     private String sexo;
     private String dataNascimento;
+    private List<Pedido> historicoPedidos;
+    private int Id;
 
-    public Cliente (String nome, String email, String senha, String telefone, String endereco, String cnpj, String sexo, String dataNascimento) {
-      super();    // Chamada ao construtor da superclasse para outros atrib
+    public Cliente (String nome, String email, String senha, String telefone, String endereco, String sexo, String dataNascimento, GerenciadorCliente gerenciador) {
+      this.nome = nome;
+      this.email = email;
+      this.senha = senha;
+      this.telefone = telefone;
+      this.endereco = endereco;
       this.sexo = sexo;
       this.dataNascimento = dataNascimento;
+      this.historicoPedidos = new ArrayList<>();
+      setId(gerenciador);
+    }
+    
+    public int getId() {
+    	return Id;
     }
 		
-    public String getSexo() {
+    private void setId(GerenciadorCliente gerenciador) {
+		int tamanho = gerenciador.getClientes().size();
+		this.Id = tamanho;
+	}
+
+
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public String getSexo() {
       return sexo;
     }
 
@@ -31,14 +98,9 @@ public class Cliente extends Usuario {
       this.dataNascimento = dataNascimento;
     }
 
-    public Pedido realizaPedido() {      
-      List<Item> listaItens = new ArrayList<Item>();
-      listaItens.add(new Item("Pizza", "Pizza de calabresa", 50.0)); 
-      listaItens.add(new Item("Sanduiche", "Sanduiche de carne", 15.0));// O cliente escolhe os item do pedido
-      
-      System.out.println("Realizando pedido...");
-      Pedido pedido = new Pedido(listaItens);
-      
+    public Pedido realizaPedido(double valor) {      
+      List<ItensPedido> listaItens = new ArrayList<ItensPedido>();
+      Pedido pedido = new Pedido(listaItens, valor, getId());
       return pedido;
     }
 
@@ -47,6 +109,29 @@ public class Cliente extends Usuario {
 		return "Cliente [nome=" + getNome() + ", endereco=" + getEndereco() + ", telefone="
 				+ getTelefone() + ", email=" + getEmail() + ", senha=" + getSenha() + ", cnpj="
 				+ getCnpj() + ", sexo=" + sexo + ", dataNascimento=" + dataNascimento + "]";
+	}
+
+
+
+	public List<Pedido> getHistoricoPedidos() {
+		return historicoPedidos;
+	}
+	
+	
+	public void exibirHistoricoPedidos() {
+		if(this.historicoPedidos.isEmpty()) { 
+			System.out.println("Você ainda não fez pedidos!");
+			return;
+		}
+		int contador = 0;
+		for(Pedido pedido: this.historicoPedidos) {
+			contador++;
+			System.out.print(contador + ". " + pedido.toString());
+		}
+	}
+
+	public void setHistoricoPedidos(List<Pedido> historicoPedidos) {
+		this.historicoPedidos = historicoPedidos;
 	}
 
 	
