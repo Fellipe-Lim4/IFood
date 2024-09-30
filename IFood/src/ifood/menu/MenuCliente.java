@@ -15,6 +15,7 @@ import ifood.ordenacao.OrdenacaoTempoEntrega;
 import ifood.produtos.Produto;
 import ifood.usuarios.Cliente;
 import ifood.usuarios.Restaurante;
+import ifood.produtos.Cupom;
 import ifood.produtos.ItensPedido;
 import ifood.produtos.Pedido;
 
@@ -144,6 +145,7 @@ public class MenuCliente extends MenuPrincipal {
 					System.out.print("Digite o número do Prato que deseja pedir: ");
 					int numPrato = super.ScInt();
 					ItensPedido item = restaurante.getProdutos().get(numPrato-1);
+					valido = true;
 					System.out.print("Digite a quantidade do item: " + item.getNome() + " que deseja pedir: ");
 					int qtd = super.ScInt();
 					valor+=qtd*item.getPreco();
@@ -162,8 +164,39 @@ public class MenuCliente extends MenuPrincipal {
 							pedidoTerminado = false;
 							break;
 						case 2:
+							//
 							pedidoTerminado = true;
-							valor+=restaurante.getTaxaEntrega();
+							String escolha = "";
+							while(!escolha.equals("s") && !escolha.equals("n")) {
+								System.out.print("Deseja ativar um cupom de desconto? [S/N]");
+								escolha = sc.nextLine().toLowerCase();
+							}
+							boolean codValido = false;
+							Cupom cupomAtivado = new Cupom(null, 0, 0, null, false);
+							while(!codValido) {
+								System.out.print("(0 para sair) Digite o código de ativação: ");
+								String codAtivacao = sc.nextLine();
+								if(codAtivacao.equals("0")) break;
+								List<Cupom> cupons = restaurante.getCupons();
+								for(Cupom cupom : cupons) {
+									if(cupom.getCodAtivacao().equals(codAtivacao)) {
+										cupomAtivado = cupom;
+										codValido = true;
+										break;
+									}
+								}
+							}
+							if(cupomAtivado.getValor()<valor && cupomAtivado.getValor()!=0) {
+								valor = valor-cupomAtivado.getValor();
+							} else {
+							if(cupomAtivado.getPorcentagem()!=0) {
+								valor = valor-valor*cupomAtivado.getPorcentagem();
+							} else {
+								System.out.println("Desconto não aplicado: desconto maior que o valor do pedido");
+							}
+							}
+							
+							if(!cupomAtivado.isFreteGratis())valor+=restaurante.getTaxaEntrega();
 							Pedido pedido = new Pedido(itens, valor, clienteLogado.getId());
 							clienteLogado.getHistoricoPedidos().add(pedido);
 							System.out.println("Pedido criado com sucesso!");
@@ -225,8 +258,38 @@ public class MenuCliente extends MenuPrincipal {
 							pedidoTerminado = false;
 							break;
 						case 2:
-							pedidoTerminado = true;
-							valor+=restaurante.getTaxaEntrega();
+							pedidoTerminado = true;pedidoTerminado = true;
+							String escolha = "";
+							while(!escolha.equals("s") && !escolha.equals("n")) {
+								System.out.print("Deseja ativar um cupom de desconto? [S/N]");
+								escolha = sc.nextLine().toLowerCase();
+							}
+							boolean codValido = false;
+							Cupom cupomAtivado = new Cupom(null, 0, 0, null, false);
+							while(!codValido) {
+								System.out.print("(0 para sair) Digite o código de ativação: ");
+								String codAtivacao = sc.nextLine();
+								if(codAtivacao.equals("0")) break;
+								List<Cupom> cupons = restaurante.getCupons();
+								for(Cupom cupom : cupons) {
+									if(cupom.getCodAtivacao().equals(codAtivacao)) {
+										cupomAtivado = cupom;
+										codValido = true;
+										break;
+									}
+								}
+							}
+							if(cupomAtivado.getValor()<valor) {
+								valor = valor-cupomAtivado.getValor();
+							} else {
+							if(cupomAtivado.getPorcentagem()!=0) {
+								double resultado = valor*cupomAtivado.getPorcentagem();
+								valor = valor-resultado;
+							} else {
+								System.out.println("Desconto não aplicado: desconto maior que o valor do pedido");
+							}
+							}
+							if(!cupomAtivado.isFreteGratis())valor+=restaurante.getTaxaEntrega();
 							Pedido pedido = new Pedido(itens, valor, clienteLogado.getId());
 							clienteLogado.getHistoricoPedidos().add(pedido);
 							System.out.println("Pedido criado com sucesso!");

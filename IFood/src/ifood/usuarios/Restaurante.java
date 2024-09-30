@@ -1,8 +1,10 @@
 package ifood.usuarios;
 
+import ifood.produtos.Cupom;
 import ifood.produtos.Produto;
 import java.util.List;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import ifood.gerenciadores.Avaliacao;
@@ -20,14 +22,31 @@ public class Restaurante extends Usuario {
 	  private List<Avaliacao> avaliacoes;
 	  private double mediaAvaliacoes;
 	  private double mediaPreco;
+	  private List<Cupom> cupons;
+	  
 	  
 	  public Restaurante(String cnpj, GerenciadorRestaurante gerenciador) {
 	    this.cnpj = cnpj;
 	    this.setIdRestaurante(gerenciador);
 	    this.produtos = new ArrayList<>();
 	    this.avaliacoes = new ArrayList<>();
+	    this.cupons = new ArrayList<>();
 	    this.mediaAvaliacoes = 0.0;
 	  }
+	  
+	  
+	  
+	  public List<Cupom> getCupons() {
+		return cupons;
+	}
+
+
+
+	public void criarCupom(String codigoAtivacao, double valor, double porcentagem, LocalDate dataExpiracao, boolean freteGratis) {
+		  Cupom cupom = new Cupom(codigoAtivacao, valor, porcentagem, dataExpiracao, freteGratis);
+		  cupons.add(cupom);
+	  }
+	  
 	  
 	  public Produto criaProduto(String nome, String descricao, double preco) {
 		  Produto produto = new Produto(nome,descricao,preco, this);

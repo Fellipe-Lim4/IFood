@@ -150,14 +150,14 @@ public class MenuPrincipal implements Entrada {
 		boolean valido = false;
 		while(!valido) {
 			try {
-				entrada = sc.nextDouble();
+				entrada = Double.parseDouble(sc.nextLine());
 				while(entrada<0) {
 					System.out.print("\nValor inválido. Tente novamente: ");
-					entrada = sc.nextDouble();
+					entrada = Double.parseDouble(sc.nextLine());
 				}
 				valido = true;
 				return entrada;
-			} catch(InputMismatchException i) {
+			} catch(NumberFormatException n) {
 				System.out.print("\nValor inválido. Tente novamente: ");
 				sc.nextLine();
 			}

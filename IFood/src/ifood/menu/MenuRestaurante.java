@@ -3,6 +3,10 @@ import ifood.gerenciadores.GerenciadorCliente;
 import ifood.gerenciadores.GerenciadorRestaurante;
 import ifood.usuarios.Restaurante;
 import ifood.produtos.Produto;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class MenuRestaurante extends MenuPrincipal {
@@ -26,7 +30,9 @@ public class MenuRestaurante extends MenuPrincipal {
 			System.out.println("3. Altera Produto");
 			System.out.println("4. Exibe Cardápio");
 			System.out.println("5. Exibir informações do Restaurante.");
-			System.out.println("6. Sair");
+			System.out.println("6. Cadastrar Cupom.");
+			System.out.println("7. Exibir Cupons.");
+			System.out.println("8. Sair");
 
 			opc = super.ScInt();
 			switch(opc) {
@@ -46,12 +52,87 @@ public class MenuRestaurante extends MenuPrincipal {
 				System.out.println(restauranteLogado.toString());
 				break;	
 			case 6:
-				System.out.println("Log off.");
+				cadastrarCupom();
+				break;
+			case 7:
+				System.out.println(restauranteLogado.getCupons());
+				break;
+			case 8:
 				return;
 			}
 		}
 	}
-		
+	
+	private void cadastrarCupom() {
+		System.out.println("Cadastro de Cupom");
+		System.out.print("\nCrie um código de ativação para o cliente usar o cupom: ");
+		String codAtivacao = sc.nextLine();
+		int opc = 0;
+		double percentual = 100;
+		double fixo = 0;
+		while(opc!=1 && opc!=2) {
+			System.out.println("O desconto será fixo ou percentual?");
+			System.out.println("1. Fixo.");
+			System.out.println("2. Percentual.");
+			System.out.println("3. Sair.");
+			opc = ScInt();
+			switch(opc) {
+			case 1:
+				while(fixo==0) {
+					System.out.print("Digite o desconto fixo do cupom: ");
+					fixo = ScDouble();
+				}
+				break;
+			case 2:
+				while(percentual>=100 || percentual<=0) {
+					System.out.print("Digite o desconto percentual do cupom: ");
+					percentual = ScDouble();
+				}
+				if(percentual>=10) {
+					percentual = percentual/100;
+				} 
+				if(percentual>=1) {
+					percentual = percentual/100;
+				}
+				break;
+			case 3:
+				return;
+			}
+		}
+		if(percentual==100) percentual = 0;
+		LocalDate data = LocalDate.now();
+		boolean valido = false;
+		while(!valido) {
+			DateTimeFormatter dataFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			System.out.print("Digite sua data de expiração no modelo dia/mes/ano: ");
+			String dataS = sc.nextLine();
+			try {
+				data = LocalDate.parse(dataS,dataFormat);
+				if(data.isBefore(LocalDate.now())) {
+					valido = false;
+					System.out.println("Essa data já passou!");
+				} else {
+					System.out.println("Data válida.");
+					valido = true;
+				}
+			} catch(DateTimeParseException d) {
+				valido = false;
+				}
+			}
+		boolean freteGratis;
+		String escolha = "";
+		while(!escolha.equals("s") && !escolha.equals("n")) {
+			System.out.print("O cupom vai permitir entrega grátis? [S/N]");
+			escolha = sc.nextLine().toLowerCase();
+		}
+		if(escolha.equals("s")) {
+			freteGratis = true;
+		} else {
+			freteGratis = false;
+		}
+		restauranteLogado.criarCupom(codAtivacao, fixo, percentual , data, freteGratis);
+		System.out.println("Cupom criado!");
+		}
 
 	public void adicionaProduto() {
 		System.out.println("\nAdicionar Produto");

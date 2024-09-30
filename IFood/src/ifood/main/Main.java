@@ -11,7 +11,7 @@ public class Main {
       GerenciadorRestaurante gerenciadorRestaurante = new GerenciadorRestaurante();
     
 	  gerenciadorCliente.criarCliente("João", "joao", "12345", "999999999", "Rua A, 123", "M", "01/01/1992", gerenciadorCliente);
-	  gerenciadorCliente.exibirClientes(); 
+
 	  
 	  gerenciadorRestaurante.criarRestaurante("12.345.678/0001-951", "Restaurante1", "joao.s@example.com","P@ssw0rd!20244", 5 , gerenciadorRestaurante);
 	  gerenciadorRestaurante.criarRestaurante("12.345.678/0001-951", "Restaurante2", "joao.@example.com","P@ssw0rd!20244", 3 , gerenciadorRestaurante);
