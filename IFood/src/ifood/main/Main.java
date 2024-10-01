@@ -1,6 +1,9 @@
 package ifood.main;
 import ifood.menu.*;
 import ifood.usuarios.Restaurante;
+
+import java.time.LocalDate;
+
 import ifood.gerenciadores.*;
 
 
@@ -44,6 +47,8 @@ public class Main {
 	  restaurante4.adicionarAvaliacao(avaliacao4);
 	  restaurante5.adicionarAvaliacao(avaliacao5);
 	  restaurante6.adicionarAvaliacao(avaliacao6);
+	  restaurante1.criarCupom("cupom70", 70.0, 0, LocalDate.parse("2024-11-28"), false);
+	  restaurante1.criarCupom("cupomvencido", 1.0, 0.0, LocalDate.parse("2004-11-28"), false);
 	  MenuPrincipal menu = new MenuPrincipal(gerenciadorRestaurante,gerenciadorCliente);
 	  menu.exibirMenuPrincipal(); 
     }     
