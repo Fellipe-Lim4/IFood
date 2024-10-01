@@ -285,6 +285,7 @@ public class MenuCliente extends MenuPrincipal {
 							}
 							if(cupomAtivado.getDataExpiracao().isBefore(LocalDate.now())) {
 								System.out.println("Falha ao aplicar o cupom: Cupom vencido.");
+							} else {
 							if(cupomAtivado.getValor()<valor) {
 								valor = valor-cupomAtivado.getValor();
 							} else {
